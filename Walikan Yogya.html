@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		>
+		<title>Walikan Yogya</title>
+		<link rel="icon" type="image/x-icon" href="/images/y_walik_512.ico">
+		<style>
+			body {
+				background-color: black;
+				color: white;
+			}
+			textarea {
+				width: 90%;
+				margin-left: ;
+				background-color: grey;
+				color: white;
+				padding: ;
+				border-width: ;
+				border-color: ;
+			}
+			::placeholder {
+				color: lightgrey;
+				opacity: 1; /* Required for Firefox to show full color */
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Sanḍi 'Walikan' Yogya<br>[Gus Joko©]</h1>
+		<textarea id="inputText" rows="7" cols="50" placeholder="Halo, Gus Joko dari Trawas!"></textarea><br><br>
+		<button onclick="encryptText()">ENCRYPT (jaḍikan sanḍi)</button>
+		<button class="button2" onclick="copyOutput()" id="copyBtn">copy (salin sanḍi)</button><br><br>
+		<div id="outputText"></div>
+		<script>
+			const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZḌÑṬṄabcdefghijklmnopqrstuvwxyzḍñṭṅ";
+			const currentKey = "ASJMEFTPICÑṄDḌOHQYBGUVṬXRZNKWLasjmeftpicñṅdḍohqybguvṭxrznkwl"; 
+			function encryptText() {
+				let text = document.getElementById("inputText").value;
+				let result = "";
+
+				for (let char of text) {
+					let index = alphabet.indexOf(char);
+					result += index !== -1 ? currentKey[index] : char;
+				}
+				// Regex kustom ini lebih kebal bug untuk karakter spesial.
+				result = result.replace(/(^|[^a-zA-ZḌÑṬṄḍñṭṅ])([aeiou])/g, '$1p$2')
+				.replace(/(^|[^a-zA-ZḌÑṬṄḍñṭṅ])([AEIOU])/g, '$1P$2');
+
+				document.getElementById("outputText").innerText = result;
+			}
+
+			function copyOutput() {
+				let textToCopy = document.getElementById("outputText").innerText;
+
+				navigator.clipboard.writeText(textToCopy).then(() => {
+					let btn = document.getElementById("copyBtn");
+					btn.innerText = "COPIED!";
+					setTimeout(() => { btn.innerText = "copy"; }, 2000);
+				}).catch(err => {
+					console.error('Gagal menyalin teks: ', err);
+				});
+			}
+		</script>
+	</body>
+</html>
