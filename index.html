@@ -6,11 +6,14 @@
 			content="width=device-width, initial-scale=1"
 		>
 		<title>Walikan Yogya</title>
-		<link rel="icon" type="image/x-icon" href="/images/y_walik_512.ico">
+		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		<style>
 			body {
 				background-color: black;
 				color: white;
+			}
+			h1 {
+				text-align: center;
 			}
 			textarea {
 				width: 90%;
@@ -25,6 +28,12 @@
 				color: lightgrey;
 				opacity: 1; /* Required for Firefox to show full color */
 			}
+			button {
+				background-color: #c72b40;
+				cursor: pointer;
+			}
+			.button2 {
+			    background-color: #c0c0c0;
 		</style>
 	</head>
 	<body>
@@ -56,8 +65,8 @@
 
 				navigator.clipboard.writeText(textToCopy).then(() => {
 					let btn = document.getElementById("copyBtn");
-					btn.innerText = "COPIED!";
-					setTimeout(() => { btn.innerText = "copy"; }, 2000);
+					btn.innerText = "TERSALIN!";
+					setTimeout(() => { btn.innerText = "copy (salin sanḍi)"; }, 2000);
 				}).catch(err => {
 					console.error('Gagal menyalin teks: ', err);
 				});
